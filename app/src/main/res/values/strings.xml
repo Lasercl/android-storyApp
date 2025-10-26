@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LoginWithAnimation</string>
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="message_welcome_page">Punya cerita yang ingin kamu bagikan? Tulis, baca, dan temukan kisah menarik dari penulis lain di sini!</string>
+    <string name="title_welcome_page">Selamat datang di Litera!</string>
+    <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Masukkan dulu datamu ya</string>
+    <string name="title_login_page">Sudah siap menulis kisahmu hari ini?</string>
+    <string name="name">Nama</string>
+    <string name="message_main_page">Selamat Menulis dan Membaca di Litera.</string>
+    <string name="greeting">Halo %1$s,</string>
+    <string name="logout">Keluar</string>
+    <string name="ic_explore_story">people that look to list story</string>
+    <string name="img_desc_placeholder">default desc</string>
+
+</resources>

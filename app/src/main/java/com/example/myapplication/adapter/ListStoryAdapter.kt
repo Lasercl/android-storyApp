@@ -14,8 +14,9 @@ import com.example.myapplication.data.remote.response.ListStoryItem
 import com.example.myapplication.databinding.ItemRowHeroBinding
 import com.example.myapplication.view.detail.DetailActivity
 import androidx.core.util.Pair
+import androidx.paging.PagingDataAdapter
 
-class ListStoryAdapter: ListAdapter<ListStoryItem, ListStoryAdapter.MyViewHolder>(ListStoryAdapter.Companion.DIFF_CALLBACK)  {
+class ListStoryAdapter: PagingDataAdapter<ListStoryItem, ListStoryAdapter.MyViewHolder>(ListStoryAdapter.Companion.DIFF_CALLBACK)  {
     private var onItemClickListener: ((ListStoryItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -23,12 +24,11 @@ class ListStoryAdapter: ListAdapter<ListStoryItem, ListStoryAdapter.MyViewHolder
         return MyViewHolder(binding)
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val StoryItem = getItem(position)
-        holder.bind(StoryItem)
+        val storyItem = getItem(position)
+        holder.bind(storyItem!!)
     }
     class MyViewHolder(val binding: ItemRowHeroBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(story: ListStoryItem){
-//            binding.tvItem.text = "${review.review}\n- ${review.name}"
             binding.tvStoryTitle.text="${story.name}"
             binding.tvStoryDesc.text="${story.description}"
             Glide.with(binding.root.context)

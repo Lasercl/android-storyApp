@@ -51,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
             val password=binding.passwordEditText.text.toString()
-//            viewModel.saveSession(UserModel(email, "sample_token"))
 
             viewModel.login(email, password).observe(this) { result ->
                 when (result) {
@@ -72,9 +71,7 @@ class LoginActivity : AppCompatActivity() {
                             show()
                         }
                         Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
-                        // pindah ke halaman utama
-//                        startActivity(Intent(this, MainActivity::class.java))
-//                        finish()
+
                     }
                     is Result.Error -> {
                         showLoading(false)

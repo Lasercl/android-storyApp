@@ -1,4 +1,4 @@
-package com.example.myapplication.view.liststory
+package com.example.myapplication.view.map
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -6,38 +6,34 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.example.myapplication.data.UserRepository
-import com.example.myapplication.data.pref.UserPreference
 import com.example.myapplication.data.remote.response.ListStoryItem
-import com.example.myapplication.data.remote.retrofit.ApiConfig
+import com.example.myapplication.data.remote.response.StoryResponse
 import com.example.myapplication.data.repository.StoryRepository
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class ListStoryViewModel(storyRepository:StoryRepository) : ViewModel(){
-    private var repo: StoryRepository=storyRepository
-    lateinit var listItem: LiveData<PagingData<ListStoryItem>>
+class MapsViewModel(private val repository: StoryRepository): ViewModel() {
+    private var repo: StoryRepository=repository
+    private val _listItem = MutableLiveData<List<ListStoryItem>?>()
+    val listItem: MutableLiveData<List<ListStoryItem>?> = _listItem
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
-    init {
-        getStory()
+    init{
+        getStoriesWithLocation()
     }
-    fun getStory() {
+    fun getStoriesWithLocation(){
         viewModelScope.launch {
             fetchStories()
         }
     }
-    private suspend fun fetchStories() {
+    suspend fun fetchStories(){
         try {
             _isLoading.value = true
-            listItem = repo.getStories().cachedIn(viewModelScope)
+            val story = repo.getStoriesWithLocation()
+            _listItem.value = story.listStory as List<ListStoryItem>?
         } catch (e: Exception) {
             Log.e(TAG, "onFailure: ${e.message}")
         } finally {
             _isLoading.value = false
         }
     }
-
 }

@@ -8,7 +8,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
     companion object{
-        // 🔹 Versi tanpa token — untuk login & register\
 
         private const val BASE_URL = "https://story-api.dicoding.dev/v1/"
         fun getApiService(): ApiService {

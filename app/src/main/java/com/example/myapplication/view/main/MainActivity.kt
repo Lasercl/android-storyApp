@@ -27,6 +27,11 @@ class MainActivity : AppCompatActivity() {
             if (!user.isLogin) {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
+            }else{
+                var name=user.email
+                var message="Hai, $name \uD83D\uDC4B"
+                binding.nameTextView.text=message
+
             }
         }
 
@@ -52,6 +57,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ListStoryActivity::class.java)
             startActivity(intent)
         }
+//        var message = intent.getStringExtra("PERSON_EMAIL")
+//        message="Hai, $message \uD83D\uDC4B"
+//        binding.nameTextView.text=message
         binding.logoutButton.setOnClickListener {
             viewModel.logout()
         }
